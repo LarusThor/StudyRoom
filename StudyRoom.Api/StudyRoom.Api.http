@@ -1,0 +1,6 @@
+@StudyRoom.Api_HostAddress = http://localhost:5209
+
+GET {{StudyRoom.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

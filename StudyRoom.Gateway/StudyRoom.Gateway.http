@@ -1,0 +1,6 @@
+@StudyRoom.Gateway_HostAddress = http://localhost:5072
+
+GET {{StudyRoom.Gateway_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
