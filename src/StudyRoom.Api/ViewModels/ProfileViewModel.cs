@@ -5,7 +5,7 @@ namespace StudyRoom.ViewModels
         public string Email { get; set; } = null!;
         public string FirstName { get; set; } = null!;
         public string LastName { get; set; }
-        public Datetime? LastLoggedIn { get; set; }
-        public Datetime? CreatedOn { get; set; }
+        public DateTime? LastLoggedIn { get; set; }
+        public DateTime? CreatedOn { get; set; }
     }
 }

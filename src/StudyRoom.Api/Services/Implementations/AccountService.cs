@@ -1,4 +1,4 @@
-using StudyRoom.Models;
+//using StudyRoom.Models;
 using StudyRoom.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.WebUtilities;
@@ -7,20 +7,20 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace System.Services
 {
-    public class AccountService : IAccountService
+    public class AccountService
     {
-        private readonly UserManager<ApplicationUser> _userManager;
-        private readonly SignInManager<ApplicationUser> _signInManager;
-        private readonly IEmailService _emailService;
+        // private readonly UserManager<ApplicationUser> _userManager;
+        // private readonly SignInManager<ApplicationUser> _signInManager;
+        // private readonly IEmailService _emailService;
         private readonly IConfiguration _configuration;
 
-        public AccountService(UserManager<ApplicationUser> userManager, SignInManager<ApplcationUser> signInManager, IEmailService emailService, IConfiguration configuration)
-        {
-            _userManager = userManager;
-            _signInManager = signInManager;
-            _emailService = emailService;
-            _configuration = configuration;
-        }
+        // public AccountService(UserManager<ApplicationUser> userManager, SignInManager<ApplcationUser> signInManager, IEmailService emailService, IConfiguration configuration)
+        // {
+        //     _userManager = userManager;
+        //     _signInManager = signInManager;
+        //     _emailService = emailService;
+        //     _configuration = configuration;
+        // }
 
         public async Task <IdentityResult> RegisterUserAsync(RegisterViewModel model)
         {

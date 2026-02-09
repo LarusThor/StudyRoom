@@ -5,7 +5,7 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace StudyRoom.Services
 {
-    public class EmailService : IEmailService
+    public class EmailService
     {
         private readonly IConfiguration _configuration;
 
