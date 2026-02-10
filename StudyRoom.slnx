@@ -1,2 +1,7 @@
 <Solution>
+  <Folder Name="/src/">
+    <Project Path="src/StudyRoom.Api/StudyRoom.Api.csproj" />
+    <Project Path="src/StudyRoom.Gateway/StudyRoom.Gateway.csproj" />
+    <Project Path="src/StudyRoom.Worker/StudyRoom.Worker.csproj" />
+  </Folder>
 </Solution>
