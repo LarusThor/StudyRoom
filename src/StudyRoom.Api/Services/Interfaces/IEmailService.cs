@@ -2,10 +2,10 @@ namespace StudyRoom.Services
 {
     public interface IEmailService
     {
-        Task SendRegistrationConfirmationEmailAsync(string toEmail, string firstName, string confirmationLink);
+        Task SendRegistrationConfirmationEmailAsync(string toEmail, string confirmationLink);
 
-        Task SendAccountCreatedEmailAsync(string toEmail, string firstName, string loginLink);
+        Task SendAccountCreatedEmailAsync(string toEmail, string loginLink);
 
-        Task SendResendConfirmationEmailAsync(string toEmail, string firstName, string confirmationLinl);
+        Task SendResendConfirmationEmailAsync(string toEmail, string confirmationLinl);
     }
 }
