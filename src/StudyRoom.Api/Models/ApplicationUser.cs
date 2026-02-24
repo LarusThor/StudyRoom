@@ -1,12 +1,18 @@
+using System.Net.Sockets;
 using Microsoft.AspNetCore.Identity;
 
 namespace StudyRoom.Models
 {
-    public class ApplicationUser : IdentityUser
+    public class ApplicationUser : IdentityUser<Guid>
     {
-        public Boolean IsActive { get; set; }
-        public DateTime? LastLoggedIn { get; set; }
+        public string FirstName { get; set; } = null!;
+        public string? LastName { get; set; }
+        public DateTime? DateOfBirth { get; set; }
+        public bool IsActive { get; set; }
+        public DateTime? LastLogin { get; set; }
         public DateTime? CreatedOn { get; set; }
+        public DateTime? ModifiedOn { get; set; }
 
+        public virtual List<Address>? Addresses { get; set; }
     }
 }
