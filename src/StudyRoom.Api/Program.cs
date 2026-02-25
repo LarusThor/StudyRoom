@@ -1,6 +1,10 @@
 using StudyRoom.Data;
+using StudyRoom.Models;
+using StudyRoom.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
+
 
 namespace ASPNETCoreIdentityDemo
 {
@@ -15,11 +19,22 @@ namespace ASPNETCoreIdentityDemo
 
             // Register Entity Framework Core with SQL Server
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
-                    options.UseSqlServer(builder.Configuration.GetConnectionString("SQLServerIdentityConnection")));
+                    options.UseSqlServer(builder.Configuration.GetConnectionString("SQLServerIdentityConnection"))
+                            .ConfigureWarnings(warnings => 
+                                warnings.Ignore(RelationalEventId.PendingModelChangesWarning)));
 
             // Register ASP.NET Core Identity Services
-            builder.Services.AddIdentity<IdentityUser, IdentityRole>()
-                    .AddEntityFrameworkStores<ApplicationDbContext>();
+            builder.Services.AddIdentity<ApplicationUser, ApplicationRole>()
+                    .AddEntityFrameworkStores<ApplicationDbContext>()
+                    .AddDefaultTokenProviders();
+
+            builder.Services.Configure<DataProtectionTokenProviderOptions>(options =>
+            {
+                options.TokenLifespan = TimeSpan.FromMinutes(30);
+            });
+
+            builder.Services.AddScoped<IAccountService, AccountService>();
+            builder.Services.AddScoped<IEmailService, EmailService>();
 
             var app = builder.Build();
 
