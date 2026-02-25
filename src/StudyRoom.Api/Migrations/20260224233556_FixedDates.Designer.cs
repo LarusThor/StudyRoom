@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StudyRoom.Data;
 
@@ -11,9 +12,11 @@ using StudyRoom.Data;
 namespace StudyRoom.Api.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260224233556_FixedDates")]
+    partial class FixedDates
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -213,7 +216,7 @@ namespace StudyRoom.Api.Migrations
                         new
                         {
                             Id = new Guid("c8d89a25-4b96-4f20-9d79-7f8a54c5213d"),
-                            ConcurrencyStamp = "7b143bf7-0190-49c7-9d5d-cdacee7b4a3b",
+                            ConcurrencyStamp = "ca41607f-ac9a-4227-bf85-c05577e56811",
                             CreatedOn = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "Administrator role with full permissions.",
                             IsActive = true,
@@ -224,7 +227,7 @@ namespace StudyRoom.Api.Migrations
                         new
                         {
                             Id = new Guid("b92f0a3e-573b-4b12-8db1-2ccf6d58a34a"),
-                            ConcurrencyStamp = "d6243449-c3e9-4464-b540-b46152dacae8",
+                            ConcurrencyStamp = "205bfa93-9a28-49a0-9521-f19972f74c74",
                             CreatedOn = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "Standard user role.",
                             IsActive = true,
@@ -235,7 +238,7 @@ namespace StudyRoom.Api.Migrations
                         new
                         {
                             Id = new Guid("d7f4a42e-1c1b-4c9f-8a50-55f6b234e8e2"),
-                            ConcurrencyStamp = "807bd87f-b322-456d-97a2-ab687f84e916",
+                            ConcurrencyStamp = "4f1f4684-ab41-488b-98f7-5bba07affd4c",
                             CreatedOn = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "Manager role with moderate permissions.",
                             IsActive = true,
@@ -246,7 +249,7 @@ namespace StudyRoom.Api.Migrations
                         new
                         {
                             Id = new Guid("f2e6b8a1-9d43-4a7c-9f32-71d7c5dbe9f0"),
-                            ConcurrencyStamp = "74da0912-665f-4c2a-b14a-2aa501268f1e",
+                            ConcurrencyStamp = "215fa119-6c28-4706-9d32-e16aee7abe29",
                             CreatedOn = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "Guest role with limited access.",
                             IsActive = true,

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StudyRoom.Data;
 
@@ -11,9 +12,11 @@ using StudyRoom.Data;
 namespace StudyRoom.Api.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260224233024_secondMigration")]
+    partial class secondMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -213,44 +216,44 @@ namespace StudyRoom.Api.Migrations
                         new
                         {
                             Id = new Guid("c8d89a25-4b96-4f20-9d79-7f8a54c5213d"),
-                            ConcurrencyStamp = "7b143bf7-0190-49c7-9d5d-cdacee7b4a3b",
-                            CreatedOn = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ConcurrencyStamp = "9e56004e-2fde-4ba6-a185-c3a235405358",
+                            CreatedOn = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Administrator role with full permissions.",
                             IsActive = true,
-                            ModifiedOn = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ModifiedOn = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = new Guid("b92f0a3e-573b-4b12-8db1-2ccf6d58a34a"),
-                            ConcurrencyStamp = "d6243449-c3e9-4464-b540-b46152dacae8",
-                            CreatedOn = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ConcurrencyStamp = "050df694-1570-4ba0-8fbc-d1c72c26d15b",
+                            CreatedOn = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Standard user role.",
                             IsActive = true,
-                            ModifiedOn = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ModifiedOn = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
                             Id = new Guid("d7f4a42e-1c1b-4c9f-8a50-55f6b234e8e2"),
-                            ConcurrencyStamp = "807bd87f-b322-456d-97a2-ab687f84e916",
-                            CreatedOn = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ConcurrencyStamp = "1b2d0edc-60d0-47fe-b8f2-431325fc4a8d",
+                            CreatedOn = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Manager role with moderate permissions.",
                             IsActive = true,
-                            ModifiedOn = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ModifiedOn = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Manager",
                             NormalizedName = "MANAGER"
                         },
                         new
                         {
                             Id = new Guid("f2e6b8a1-9d43-4a7c-9f32-71d7c5dbe9f0"),
-                            ConcurrencyStamp = "74da0912-665f-4c2a-b14a-2aa501268f1e",
-                            CreatedOn = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ConcurrencyStamp = "169e5f1e-385b-481e-a447-9dfbdde58ea4",
+                            CreatedOn = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Guest role with limited access.",
                             IsActive = true,
-                            ModifiedOn = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ModifiedOn = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Guest",
                             NormalizedName = "GUEST"
                         });

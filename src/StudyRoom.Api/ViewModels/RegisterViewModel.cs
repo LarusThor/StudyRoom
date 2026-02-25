@@ -13,12 +13,20 @@ namespace StudyRoom.ViewModels
         [Required]
         [Display(Name = "Last Name")]
         [StringLength(50, ErrorMessage = "Last Name Cannot be Longer Than 50 Characters.")]
-        public string LastName { get; set; }
+        public string? LastName { get; set; }
 
         [Required(ErrorMessage = "Email is Required.")]
         [EmailAddress(ErrorMessage = "Invalid Email Address.")]
         public string Email { get; set; } = null!;
 
+        [DataType(DataType.Date)]
+        [Display(Name = "Date of Birth")]
+        public DateTime? DateOfBirth { get; set; }
+
+        [Required(ErrorMessage = "PhoneNumber is Required")]
+        [Phone(ErrorMessage = "Please enter a valid Phone number")]
+        [Display(Name = "Phone Number")]
+        public string PhoneNumber { get; set; } = default!;
         [Required]
         [DataType(DataType.Password)]
         [StringLength(100, MinimumLength = 8, ErrorMessage = "Password Must be 8 Characters or Longer.")]
