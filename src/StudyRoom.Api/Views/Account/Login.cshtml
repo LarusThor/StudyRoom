@@ -1,101 +1,115 @@
-@model StudyRoom.ViewModels.LoginViewModel
+@model StudyRoom.Api.ViewModels.LoginViewModel
 
 @{
-    ViewData["Title"] = "Login";
+    ViewData["Title"] = "Sign In";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="container mt-3 mb-3">
-    <div class="row shadow-lg rounded-4 bg-white overflow-hidden mx-auto" style="max-width: 800px;">
-        <!-- Left: Login Section -->
-        <div class="col-md-6 py-4 px-4 bg-light d-flex flex-column justify-content-center">
-            <h3 class="mb-2 text-center fw-bold text-primary">Sign in to <span class="text-dark">Dot Net Tutorials</span></h3>
-            <p class="text-center text-muted mb-4 small">
-                <span class="fw-semibold text-secondary">Welcome back!</span>
-                Please enter your credentials below to access your account.
-            </p>
+<style>
+    .auth-wrap {
+        min-height: calc(100vh - 140px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+    }
+    .auth-card {
+        background: #fff;
+        border: 1px solid var(--sr-border);
+        border-radius: 20px;
+        box-shadow: 0 4px 32px rgba(0,0,0,0.08);
+        width: 100%;
+        max-width: 420px;
+        padding: 2.5rem;
+    }
+    .auth-icon {
+        width: 52px;
+        height: 52px;
+        background: linear-gradient(135deg, var(--sr-primary), var(--sr-primary-light));
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1.25rem;
+    }
+    .auth-icon i { color: #fff; font-size: 1.5rem; }
+    .auth-title { font-size: 1.5rem; font-weight: 700; text-align: center; margin-bottom: 0.25rem; }
+    .auth-sub { font-size: 0.875rem; color: var(--sr-muted); text-align: center; margin-bottom: 1.75rem; }
+    .input-wrap { position: relative; }
+    .input-wrap .bi {
+        position: absolute;
+        left: 0.85rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--sr-muted);
+        pointer-events: none;
+    }
+    .input-wrap .form-control { padding-left: 2.5rem; }
+    .divider {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        color: var(--sr-muted);
+        font-size: 0.8rem;
+        margin: 1.25rem 0;
+    }
+    .divider::before, .divider::after { content: ''; flex: 1; height: 1px; background: var(--sr-border); }
+    .auth-link { color: var(--sr-primary); font-weight: 600; text-decoration: none; }
+    .auth-link:hover { text-decoration: underline; }
+    .form-check-input:checked { background-color: var(--sr-primary); border-color: var(--sr-primary); }
+</style>
 
-            <!-- Messages Section -->
-            @if (ViewBag.Message != null)
-            {
-                <div class="alert alert-info alert-dismissible fade show mb-3 small text-center" role="alert">
-                    @ViewBag.Message
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-            }
+<div class="auth-wrap">
+    <div class="auth-card">
+        <div class="auth-icon"><i class="bi bi-mortarboard-fill"></i></div>
+        <h1 class="auth-title">Welcome back</h1>
+        <p class="auth-sub">Sign in to your StudyRoom account</p>
 
-            @if (!ViewData.ModelState.IsValid)
-            {
-                <div class="alert alert-danger alert-dismissible fade show small text-center" role="alert">
-                    <strong>Please fix the errors below and try again:</strong>
-                    <ul class="mb-0 mt-2">
-                        @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
-                        {
-                            <li>@error.ErrorMessage</li>
-                        }
-                    </ul>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-            }
-
-            <form asp-action="Login" method="post" novalidate>
-                <div class="mb-3">
-                    <label asp-for="Email" class="form-label fw-semibold text-primary"></label>
-                    <input asp-for="Email" class="form-control" placeholder="Enter your Email Address" autocomplete="username" />
-                    <span asp-validation-for="Email" class="text-danger small"></span>
-                </div>
-                <div class="mb-3">
-                    <label asp-for="Password" class="form-label fw-semibold text-primary"></label>
-                    <input asp-for="Password" class="form-control" type="password" placeholder="Enter Your Password" autocomplete="current-password" />
-                    <span asp-validation-for="Password" class="text-danger small"></span>
-                </div>
-                <div class="form-check mb-3">
-                    <input asp-for="RememberMe" class="form-check-input" />
-                    <label asp-for="RememberMe" class="form-check-label small"></label>
-                </div>
-                <button type="submit" class="btn btn-primary w-100 fw-semibold py-2 mb-2">Sign In</button>
-                <p class="mt-3 text-center mb-1">
-                    <span class="text-secondary small">New to <span class="fw-semibold text-dark">Dot Net Tutorials</span>?</span>
-                    <a asp-action="Register" class="text-primary ms-1 text-decoration-none fw-semibold">Create an account</a>
-                </p>
-                <p class="text-center mb-0">
-                    <a asp-action="ResendEmailConfirmation" class="text-info text-decoration-none small">Resend email confirmation</a>
-                </p>
-            </form>
-        </div>
-
-        <!-- Right: External Authentication -->
-        <div class="col-md-6 py-4 px-4 d-flex flex-column justify-content-center align-items-center bg-white">
-            <div class="w-100" style="max-width: 280px;">
-                <h5 class="mb-3 fw-bold text-primary text-center">Quick sign-in</h5>
-                <div class="mb-3 text-center text-muted small">Use your social account for instant access:</div>
-                <div class="d-grid gap-3 mb-3">
-                    <a href="#" class="btn btn-outline-primary d-flex align-items-center justify-content-center fw-semibold">
-                        <img src="https://img.icons8.com/color/32/000000/google-logo.png" class="me-2" style="width:24px" alt="Google" />
-                        Google
-                    </a>
-                    <a href="#" class="btn d-flex align-items-center justify-content-center fw-semibold" style="background-color: #3b5998; color: #fff;">
-                        <img src="https://img.icons8.com/fluency/32/000000/facebook-new.png" class="me-2" style="width:24px" alt="Facebook" />
-                        Facebook
-                    </a>
-                    <a href="#" class="btn btn-outline-dark d-flex align-items-center justify-content-center fw-semibold">
-                        <img src="https://img.icons8.com/ios-filled/32/000000/github.png" class="me-2" style="width:24px" alt="GitHub" />
-                        GitHub
-                    </a>
-                    <a href="#" class="btn d-flex align-items-center justify-content-center fw-semibold" style="background-color: #0078d4; color: #fff;">
-                        <img src="https://img.icons8.com/color/32/000000/microsoft.png" class="me-2" style="width:24px" alt="Microsoft" />
-                        Microsoft
-                    </a>
-                </div>
-                <div class="text-center text-muted small mt-4 mb-2">
-                    <span>We never post anything without your permission.</span>
-                </div>
-                <hr class="mb-2" />
-                <div class="text-center text-muted small">
-                    Need help? <a href="mailto:support@dotnettutorials.net" class="text-decoration-none fw-semibold">Contact Support</a>
-                </div>
+        @if (ViewBag.Message != null)
+        {
+            <div class="alert alert-info mb-3"><i class="bi bi-info-circle me-2"></i>@ViewBag.Message</div>
+        }
+        @if (!ViewData.ModelState.IsValid)
+        {
+            <div class="alert alert-danger mb-3">
+                <i class="bi bi-exclamation-circle me-2"></i>
+                @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                {<span>@error.ErrorMessage</span>}
             </div>
-        </div>
+        }
+
+        <form asp-action="Login" method="post" novalidate>
+            <div class="mb-3">
+                <label asp-for="Email" class="form-label">Email address</label>
+                <div class="input-wrap">
+                    <i class="bi bi-envelope"></i>
+                    <input asp-for="Email" class="form-control" placeholder="you@example.com" autocomplete="username" />
+                </div>
+                <span asp-validation-for="Email" class="text-danger" style="font-size:0.8rem;"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Password" class="form-label">Password</label>
+                <div class="input-wrap">
+                    <i class="bi bi-lock"></i>
+                    <input asp-for="Password" class="form-control" type="password" placeholder="••••••••" autocomplete="current-password" />
+                </div>
+                <span asp-validation-for="Password" class="text-danger" style="font-size:0.8rem;"></span>
+            </div>
+            <div class="form-check mb-4">
+                <input asp-for="RememberMe" class="form-check-input" />
+                <label asp-for="RememberMe" class="form-check-label" style="font-size:0.85rem;">Remember me</label>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Sign In</button>
+        </form>
+
+        <div class="divider">or</div>
+
+        <p class="text-center mb-1" style="font-size:0.85rem;color:var(--sr-muted);">
+            Don't have an account? <a class="auth-link" asp-action="Register">Create one</a>
+        </p>
+        <p class="text-center mb-0" style="font-size:0.8rem;">
+            <a asp-action="ResendEmailConfirmation" style="color:var(--sr-muted);text-decoration:none;">Didn't receive a confirmation email?</a>
+        </p>
     </div>
 </div>
 

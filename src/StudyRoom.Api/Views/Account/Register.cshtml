@@ -1,91 +1,160 @@
-@model StudyRoom.ViewModels.RegisterViewModel
+@model StudyRoom.Api.ViewModels.RegisterViewModel
 
 @{
-    ViewData["Title"] = "Register";
+    ViewData["Title"] = "Create Account";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="container my-3">
-    <div class="row shadow-lg rounded-4 bg-white overflow-hidden mx-auto" style="max-width: 900px;">
-        <!-- Left: Welcome/Branding Section -->
-        <div class="col-md-5 d-none d-md-flex flex-column justify-content-center align-items-center bg-primary bg-gradient text-white py-4 px-2">
-            <div class="text-center">
-                <h4 class="fw-bold mb-2" style="font-size:1.3rem;">Welcome to Dot Net Tutorials</h4>
-                <p class="mb-3 small">
-                    Join a thriving community and access premium content.<br>
-                    <span class="fst-italic">Your learning journey starts here.</span>
-                </p>
-                <img src="https://img.freepik.com/free-vector/sign-concept-illustration_114360-5425.jpg"
-                     alt="Register" class="img-fluid mb-2" width="110" />
+<style>
+    .auth-wrap {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1.5rem 1rem;
+    }
+    .auth-card {
+        background: #fff;
+        border: 1px solid var(--sr-border);
+        border-radius: 20px;
+        box-shadow: 0 4px 32px rgba(0,0,0,0.08);
+        width: 100%;
+        max-width: 580px;
+        padding: 2.5rem;
+    }
+    .auth-icon {
+        width: 52px;
+        height: 52px;
+        background: linear-gradient(135deg, var(--sr-primary), var(--sr-primary-light));
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1.25rem;
+    }
+    .auth-icon i { color: #fff; font-size: 1.5rem; }
+    .auth-title { font-size: 1.5rem; font-weight: 700; text-align: center; margin-bottom: 0.25rem; }
+    .auth-sub { font-size: 0.875rem; color: var(--sr-muted); text-align: center; margin-bottom: 1.75rem; }
+    .input-wrap { position: relative; }
+    .input-wrap .bi {
+        position: absolute;
+        left: 0.85rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--sr-muted);
+        pointer-events: none;
+    }
+    .input-wrap .form-control { padding-left: 2.5rem; }
+    .section-label {
+        font-size: 0.72rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--sr-muted);
+        margin-bottom: 0.75rem;
+        margin-top: 1.25rem;
+    }
+    .auth-link { color: var(--sr-primary); font-weight: 600; text-decoration: none; }
+    .auth-link:hover { text-decoration: underline; }
+    .field-hint { font-size: 0.78rem; color: var(--sr-muted); margin-top: 0.3rem; }
+</style>
+
+<div class="auth-wrap">
+    <div class="auth-card">
+        <div class="auth-icon"><i class="bi bi-person-plus-fill"></i></div>
+        <h1 class="auth-title">Create your account</h1>
+        <p class="auth-sub">Join StudyRoom and start your learning journey</p>
+
+        @if (!ViewData.ModelState.IsValid)
+        {
+            <div class="alert alert-danger mb-3">
+                <i class="bi bi-exclamation-circle me-2"></i>
+                <ul class="mb-0 ps-3 mt-1">
+                    @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                    {<li>@error.ErrorMessage</li>}
+                </ul>
             </div>
-        </div>
-        <!-- Right: Registration Form Section -->
-        <div class="col-md-7 bg-light py-4 px-3">
-            <h5 class="text-center fw-bold mb-3">Create Your Account</h5>
+        }
 
-            <form asp-action="Register" method="post" novalidate>
-                @if (!ViewData.ModelState.IsValid)
-                {
-                    <div class="alert alert-danger alert-dismissible fade show small text-center" role="alert">
-                        <strong>Please fix the errors below and try again:</strong>
-                        <ul class="mb-0 mt-2">
-                            @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
-                            {
-                                <li>@error.ErrorMessage</li>
-                            }
-                        </ul>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <form asp-action="Register" method="post" novalidate>
+            <p class="section-label">Personal info</p>
+            <div class="row g-3 mb-3">
+                <div class="col-sm-6">
+                    <label asp-for="FirstName" class="form-label">First name</label>
+                    <div class="input-wrap">
+                        <i class="bi bi-person"></i>
+                        <input asp-for="FirstName" class="form-control" placeholder="John" />
                     </div>
-                }
-                <div class="row">
-                    <div class="mb-2 col-md-6">
-                        <label asp-for="FirstName" class="form-label"></label>
-                        <input asp-for="FirstName" class="form-control" placeholder="First Name" />
-                        <span asp-validation-for="FirstName" class="text-danger small"></span>
+                    <span asp-validation-for="FirstName" class="text-danger" style="font-size:0.8rem;"></span>
+                </div>
+                <div class="col-sm-6">
+                    <label asp-for="LastName" class="form-label">
+                        Last name <span style="color:var(--sr-muted);font-weight:400;">(optional)</span>
+                    </label>
+                    <div class="input-wrap">
+                        <i class="bi bi-person"></i>
+                        <input asp-for="LastName" class="form-control" placeholder="Doe" />
                     </div>
-                    <div class="mb-2 col-md-6">
-                        <label asp-for="LastName" class="form-label"></label>
-                        <input asp-for="LastName" class="form-control" placeholder="Last Name (optional)" />
-                        <span asp-validation-for="LastName" class="text-danger small"></span>
+                    <span asp-validation-for="LastName" class="text-danger" style="font-size:0.8rem;"></span>
+                </div>
+            </div>
+
+            <div class="row g-3 mb-3">
+                <div class="col-sm-6">
+                    <label asp-for="Email" class="form-label">Email address</label>
+                    <div class="input-wrap">
+                        <i class="bi bi-envelope"></i>
+                        <input asp-for="Email" class="form-control" placeholder="you@example.com" />
                     </div>
+                    <span asp-validation-for="Email" class="text-danger" style="font-size:0.8rem;"></span>
                 </div>
-                <div class="mb-2">
-                    <label asp-for="Email" class="form-label"></label>
-                    <input asp-for="Email" class="form-control" placeholder="Email address" />
-                    <span asp-validation-for="Email" class="text-danger small"></span>
+                <div class="col-sm-6">
+                    <label asp-for="PhoneNumber" class="form-label">Phone number</label>
+                    <div class="input-wrap">
+                        <i class="bi bi-telephone"></i>
+                        <input asp-for="PhoneNumber" class="form-control" placeholder="+354 123 4567" />
+                    </div>
+                    <span asp-validation-for="PhoneNumber" class="text-danger" style="font-size:0.8rem;"></span>
                 </div>
-                <div class="mb-2">
-                    <label asp-for="PhoneNumber" class="form-label"></label>
-                    <input asp-for="PhoneNumber" class="form-control" placeholder="Phone Number" />
-                    <span asp-validation-for="PhoneNumber" class="text-danger small"></span>
-                </div>
-                <div class="mb-2">
-                    <label asp-for="DateOfBirth" class="form-label"></label>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="DateOfBirth" class="form-label">
+                    Date of birth <span style="color:var(--sr-muted);font-weight:400;">(optional)</span>
+                </label>
+                <div class="input-wrap">
+                    <i class="bi bi-calendar3"></i>
                     <input asp-for="DateOfBirth" type="date" class="form-control" />
-                    <span asp-validation-for="DateOfBirth" class="text-danger small"></span>
                 </div>
+                <span asp-validation-for="DateOfBirth" class="text-danger" style="font-size:0.8rem;"></span>
+            </div>
 
-                <div class="row">
-                    <div class="mb-2 col-md-6">
-                        <label asp-for="Password" class="form-label"></label>
-                        <input asp-for="Password" class="form-control" type="password" placeholder="Password" />
-                        <span asp-validation-for="Password" class="text-danger small"></span>
+            <p class="section-label">Security</p>
+            <div class="row g-3 mb-4">
+                <div class="col-sm-6">
+                    <label asp-for="Password" class="form-label">Password</label>
+                    <div class="input-wrap">
+                        <i class="bi bi-lock"></i>
+                        <input asp-for="Password" class="form-control" type="password" placeholder="••••••••" />
                     </div>
-                    <div class="mb-2 col-md-6">
-                        <label asp-for="ConfirmPassword" class="form-label"></label>
-                        <input asp-for="ConfirmPassword" class="form-control" type="password" placeholder="Confirm Password" />
-                        <span asp-validation-for="ConfirmPassword" class="text-danger small"></span>
+                    <span asp-validation-for="Password" class="text-danger" style="font-size:0.8rem;"></span>
+                    <p class="field-hint">Minimum 8 characters</p>
+                </div>
+                <div class="col-sm-6">
+                    <label asp-for="ConfirmPassword" class="form-label">Confirm password</label>
+                    <div class="input-wrap">
+                        <i class="bi bi-lock-fill"></i>
+                        <input asp-for="ConfirmPassword" class="form-control" type="password" placeholder="••••••••" />
                     </div>
+                    <span asp-validation-for="ConfirmPassword" class="text-danger" style="font-size:0.8rem;"></span>
                 </div>
-                <button type="submit" class="btn btn-primary w-100 fw-semibold py-2 mt-1 mb-2">
-                    Register
-                </button>
-                <div class="text-center mt-1">
-                    <span class="text-secondary small">Already have an account?</span>
-                    <a asp-action="Login" class="ms-1 text-primary text-decoration-none fw-semibold small">Login</a>
-                </div>
-            </form>
-        </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100 mb-3">Create Account</button>
+
+            <p class="text-center mb-0" style="font-size:0.85rem;color:var(--sr-muted);">
+                Already have an account? <a class="auth-link" asp-action="Login">Sign in</a>
+            </p>
+        </form>
     </div>
 </div>
 

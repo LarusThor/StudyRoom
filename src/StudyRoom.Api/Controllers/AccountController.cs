@@ -1,10 +1,10 @@
-using StudyRoom.Services;
-using StudyRoom.ViewModels;
+using StudyRoom.Api.Services;
+using StudyRoom.Api.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
-namespace StudyRoom.Controllers
+namespace StudyRoom.Api.Controllers
 {
     public class AccountController : Controller
     {

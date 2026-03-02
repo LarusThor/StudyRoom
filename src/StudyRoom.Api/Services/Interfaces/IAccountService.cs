@@ -1,7 +1,7 @@
-using StudyRoom.ViewModels;
+using StudyRoom.Api.ViewModels;
 using Microsoft.AspNetCore.Identity;
 
-namespace StudyRoom.Services
+namespace StudyRoom.Api.Services
 {
     public interface IAccountService
     {

@@ -1,4 +1,4 @@
-namespace StudyRoom.ViewModels
+namespace StudyRoom.Api.ViewModels
 {
     public class ProfileViewModel
     {
