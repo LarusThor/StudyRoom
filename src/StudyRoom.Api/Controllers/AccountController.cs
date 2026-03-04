@@ -18,6 +18,12 @@ namespace StudyRoom.Api.Controllers
         }
 
         [HttpGet]
+        public IActionResult HomePage()
+        {
+            return View();
+        }
+
+        [HttpGet]
         public IActionResult Register()
         {
             return View();
