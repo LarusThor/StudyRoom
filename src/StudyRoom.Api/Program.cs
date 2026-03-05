@@ -17,10 +17,10 @@ namespace ASPNETCoreIdentityDemo
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
-            // Register Entity Framework Core with SQL Server
+            // Register Entity Framework Core with PostgreSQL
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
-                    options.UseSqlServer(builder.Configuration.GetConnectionString("SQLServerIdentityConnection"))
-                            .ConfigureWarnings(warnings => 
+                    options.UseNpgsql(builder.Configuration.GetConnectionString("PostgresConnection"))
+                            .ConfigureWarnings(warnings =>
                                 warnings.Ignore(RelationalEventId.PendingModelChangesWarning)));
 
             // Register ASP.NET Core Identity Services
