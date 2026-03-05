@@ -152,12 +152,12 @@ namespace StudyRoom.Api.Controllers
             try
             {
                 await _accountService.LogoutUserAsync();
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("HomePage", "Account");
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error during logout.");
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("HomePage", "Account");
             }
         }
 
