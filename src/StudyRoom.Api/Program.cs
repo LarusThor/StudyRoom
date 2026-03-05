@@ -1,6 +1,6 @@
 using StudyRoom.Data;
-using StudyRoom.Models;
-using StudyRoom.Services;
+using StudyRoom.Api.Models;
+using StudyRoom.Api.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
@@ -43,9 +43,8 @@ namespace ASPNETCoreIdentityDemo
             {
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
+                app.UseHttpsRedirection();
             }
-
-            app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseRouting();
@@ -56,7 +55,7 @@ namespace ASPNETCoreIdentityDemo
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                pattern: "{controller=Account}/{action=Login}/{id?}");
 
             app.Run();
         }

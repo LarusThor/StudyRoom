@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 
-namespace StudyRoom.Models
+namespace StudyRoom.Api.Models
 {
     public class ApplicationRole : IdentityRole<Guid>
     {

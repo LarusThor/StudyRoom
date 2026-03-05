@@ -1,51 +1,82 @@
-@model StudyRoom.ViewModels.ResendConfirmationEmailViewModel
+@model StudyRoom.Api.ViewModels.ResendConfirmationEmailViewModel
 
 @{
-    ViewData["Title"] = "Resend Email Confirmation";
+    ViewData["Title"] = "Resend Confirmation";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="container mt-3 mb-2 d-flex justify-content-center align-items-center" style="min-height: 65vh;">
-    <div class="card shadow-lg rounded-4 border-0 p-0" style="max-width: 540px; width: 100%; background: linear-gradient(120deg, #f3faff 70%, #e8f0fe 100%);">
-        <div class="card-body pt-3 px-5 pb-5">
-            <div class="text-center mb-1">
-                <i class="bi bi-envelope-arrow-up-fill text-primary" style="font-size: 2.7rem;"></i>
-            </div>
-            <h3 class="card-title text-center mb-3 fw-bold text-primary">Resend Email Confirmation</h3>
-            <div class="alert alert-info mb-4 py-2 px-3 text-center" style="font-size:1.05rem;">
-                Please enter your <span class="fw-semibold">registered email address</span> below.<br>
-                We’ll send you a new confirmation link right away.
-            </div>
-            @if (ViewBag.Message != null)
-            {
-                <div class="alert alert-success alert-dismissible fade show mb-3 small text-center" role="alert">
-                    @ViewBag.Message
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-            }
-            @if (!ViewData.ModelState.IsValid)
-            {
-                <div class="alert alert-danger alert-dismissible fade show mb-3 small text-center" role="alert">
-                    Please fix the errors below and try again.
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-            }
+<style>
+    .auth-wrap {
+        min-height: calc(100vh - 140px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+    }
+    .auth-card {
+        background: #fff;
+        border: 1px solid var(--sr-border);
+        border-radius: 20px;
+        box-shadow: 0 4px 32px rgba(0,0,0,0.08);
+        width: 100%;
+        max-width: 420px;
+        padding: 2.5rem;
+    }
+    .auth-icon {
+        width: 52px;
+        height: 52px;
+        background: linear-gradient(135deg, var(--sr-primary), var(--sr-primary-light));
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1.25rem;
+    }
+    .auth-icon i { color: #fff; font-size: 1.5rem; }
+    .auth-title { font-size: 1.4rem; font-weight: 700; text-align: center; margin-bottom: 0.25rem; }
+    .auth-sub { font-size: 0.875rem; color: var(--sr-muted); text-align: center; margin-bottom: 1.75rem; }
+    .input-wrap { position: relative; }
+    .input-wrap .bi {
+        position: absolute;
+        left: 0.85rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--sr-muted);
+        pointer-events: none;
+    }
+    .input-wrap .form-control { padding-left: 2.5rem; }
+    .auth-link { color: var(--sr-primary); font-weight: 600; text-decoration: none; }
+    .auth-link:hover { text-decoration: underline; }
+</style>
 
-            <form asp-action="ResendEmailConfirmation" method="post" novalidate>
-                <div class="mb-3">
-                    <label asp-for="Email" class="form-label fw-semibold text-primary"></label>
-                    <input asp-for="Email" class="form-control shadow-sm" placeholder="Enter your registered email" />
-                    <span asp-validation-for="Email" class="text-danger small"></span>
-                </div>
-                <button type="submit" class="btn btn-primary w-100 fw-semibold py-2">
-                    Send Confirmation Email
-                </button>
-            </form>
-            <div class="text-center mt-4">
-                <span class="text-secondary small">Remembered your password?</span>
-                <a asp-action="Login" class="ms-1 text-primary text-decoration-none fw-semibold small">Login here</a>
+<div class="auth-wrap">
+    <div class="auth-card">
+        <div class="auth-icon"><i class="bi bi-envelope-arrow-up-fill"></i></div>
+        <h1 class="auth-title">Resend confirmation</h1>
+        <p class="auth-sub">Enter your email and we'll send a new confirmation link</p>
+
+        @if (!ViewData.ModelState.IsValid)
+        {
+            <div class="alert alert-danger mb-3">
+                <i class="bi bi-exclamation-circle me-2"></i>Please enter a valid email address.
             </div>
-        </div>
+        }
+
+        <form asp-action="ResendEmailConfirmation" method="post" novalidate>
+            <div class="mb-4">
+                <label asp-for="Email" class="form-label">Email address</label>
+                <div class="input-wrap">
+                    <i class="bi bi-envelope"></i>
+                    <input asp-for="Email" class="form-control" placeholder="you@example.com" />
+                </div>
+                <span asp-validation-for="Email" class="text-danger" style="font-size:0.8rem;"></span>
+            </div>
+            <button type="submit" class="btn btn-primary w-100 mb-3">Send Confirmation Email</button>
+        </form>
+
+        <p class="text-center mb-0" style="font-size:0.85rem;color:var(--sr-muted);">
+            Remember your password? <a class="auth-link" asp-action="Login">Sign in</a>
+        </p>
     </div>
 </div>
 

@@ -1,4 +1,4 @@
-namespace StudyRoom.Services
+namespace StudyRoom.Api.Services
 {
     public interface IEmailService
     {

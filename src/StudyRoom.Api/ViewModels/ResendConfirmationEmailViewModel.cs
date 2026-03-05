@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace StudyRoom.ViewModels
+namespace StudyRoom.Api.ViewModels
 {
     public class ResendConfirmationEmailViewModel
     {

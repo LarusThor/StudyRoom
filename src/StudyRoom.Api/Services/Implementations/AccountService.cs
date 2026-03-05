@@ -1,10 +1,10 @@
-using StudyRoom.Models;
-using StudyRoom.ViewModels;
+using StudyRoom.Api.Models;
+using StudyRoom.Api.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.WebUtilities;
 using System.Text;
 
-namespace StudyRoom.Services
+namespace StudyRoom.Api.Services
 {
     public class AccountService : IAccountService
     {

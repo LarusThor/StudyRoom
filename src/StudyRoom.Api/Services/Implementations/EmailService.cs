@@ -3,7 +3,7 @@ using System.Net;
 using System.Net.Mail;
 using System.Security.Cryptography.X509Certificates;
 
-namespace StudyRoom.Services
+namespace StudyRoom.Api.Services
 {
     public class EmailService : IEmailService
     {
@@ -24,7 +24,7 @@ namespace StudyRoom.Services
                     <p style='text-align:center;'>
                       <a href='{confirmationLink}' style='background:#0d6efd; color:#fff; padding:12px 24px; border-radius:6px; text-decoration:none; font-weight:bold;'>Confirm Your Email</a>
                     </p>
-                    <p style='font-size:12px; color:#999; margin-top:30px;'>&copy; {DateTime.UtcNow.Year} Dot Net Tutorials. All rights reserved.</p>
+                    <p style='font-size:12px; color:#999; margin-top:30px;'>&copy; {DateTime.UtcNow.Year} StudyRoom. All rights reserved.</p>
                   </div>
                 </body></html>";
 
@@ -41,7 +41,7 @@ namespace StudyRoom.Services
                     <p style='text-align:center;'>
                       <a href='{loginLink}' style='background:#198754; color:#fff; padding:12px 24px; border-radius:6px; text-decoration:none; font-weight:bold;'>Login to Your Account</a>
                     </p>
-                    <p style='font-size:12px; color:#999; margin-top:30px;'>&copy; {DateTime.UtcNow.Year} Dot Net Tutorials. All rights reserved.</p>
+                    <p style='font-size:12px; color:#999; margin-top:30px;'>&copy; {DateTime.UtcNow.Year} StudyRoom. All rights reserved.</p>
                   </div>
                 </body></html>";
             
@@ -58,7 +58,7 @@ namespace StudyRoom.Services
                     <p style='text-align:center;'>
                       <a href='{confirmationLink}' style='background:#0d6efd; color:#fff; padding:12px 24px; border-radius:6px; text-decoration:none; font-weight:bold;'>Confirm Your Email</a>
                     </p>
-                    <p style='font-size:12px; color:#999; margin-top:30px;'>&copy; {DateTime.UtcNow.Year} Dot Net Tutorials. All rights reserved.</p>
+                    <p style='font-size:12px; color:#999; margin-top:30px;'>&copy; {DateTime.UtcNow.Year} StudyRoom. All rights reserved.</p>
                   </div>
                 </body></html>";
             
