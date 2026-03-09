@@ -32,7 +32,7 @@ namespace StudyRoom.Api.Services
                 Email = model.Email,
                 FirstName = model.FirstName,
                 LastName = model.LastName,
-                DateOfBirth = model.DateOfBirth,
+                DateOfBirth = model.DateOfBirth.HasValue ? DateTime.SpecifyKind(model.DateOfBirth.Value, DateTimeKind.Utc) : null,
                 IsActive = true,
                 PhoneNumber = model.PhoneNumber,
                 CreatedOn = DateTime.UtcNow

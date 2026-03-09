@@ -18,6 +18,12 @@ namespace StudyRoom.Api.Controllers
         }
 
         [HttpGet]
+        public IActionResult HomePage()
+        {
+            return View();
+        }
+
+        [HttpGet]
         public IActionResult Register()
         {
             return View();
@@ -146,12 +152,12 @@ namespace StudyRoom.Api.Controllers
             try
             {
                 await _accountService.LogoutUserAsync();
-                return RedirectToAction("Login", "Account");
+                return RedirectToAction("HomePage", "Account");
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error during logout.");
-                return RedirectToAction("Login", "Account");
+                return RedirectToAction("HomePage", "Account");
             }
         }
 
