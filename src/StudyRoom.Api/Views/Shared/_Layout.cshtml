@@ -42,28 +42,6 @@
             margin: 0;
         }
 
-        /* ── Navbar ── */
-        .sr-navbar {
-            background: var(--sr-nav-bg);
-            border-bottom: 1px solid rgba(255,255,255,0.06);
-            padding: 0.75rem 0;
-        }
-        .sr-navbar .navbar-brand {
-            font-weight: 700;
-            font-size: 1.25rem;
-            letter-spacing: -0.5px;
-            color: #fff;
-            text-decoration: none;
-        }
-        .sr-navbar .navbar-brand span { color: var(--sr-primary-light); }
-        .sr-navbar .nav-link {
-            color: rgba(255,255,255,0.65) !important;
-            font-size: 0.875rem;
-            font-weight: 500;
-            transition: color 0.15s;
-        }
-        .sr-navbar .nav-link:hover { color: #fff !important; }
-
         .btn-nav {
             background: rgba(255,255,255,0.1);
             color: rgba(255,255,255,0.85);
@@ -78,9 +56,9 @@
         }
         .btn-nav:hover { background: rgba(255,255,255,0.18); color: #fff; }
 
-        .btn-nav-primary {
+        .btn-primary {
             background: var(--sr-primary);
-            color: #fff;
+            color: white;
             border: 1px solid var(--sr-primary);
             border-radius: 8px;
             padding: 0.4rem 1rem;
@@ -89,8 +67,12 @@
             text-decoration: none;
             transition: all 0.15s;
             display: inline-block;
+            justify-content: center;
+            align-items: center;
         }
-        .btn-nav-primary:hover { background: var(--sr-primary-dark); color: #fff; }
+        .btn-nav-primary:hover { 
+            background: var(--sr-primary-dark); color: #fff; 
+            }
 
         .sr-avatar {
             width: 32px;
@@ -184,61 +166,16 @@
             to   { opacity: 1; transform: translateY(0); }
         }
         .page-content { animation: fadeUp 0.3s ease-out both; }
+
+        .flex-grow-1 { background-color: black; }
+
     </style>
 </head>
 <body>
 
-    <nav class="sr-navbar navbar navbar-expand-lg">
-        <div class="container">
-            <a class="navbar-brand" href="@Url.Action("HomePage", "Account")">Study<span>Room</span></a>
-            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarContent" aria-controls="navbarContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul>
-                <ul class="navbar-nav mb-2 mb-lg-0 gap-2 align-items-center">
-                    @if (User.Identity?.IsAuthenticated == true)
-                    {
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle d-flex align-items-center gap-2" href="#"
-                               id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <span class="sr-avatar">@(User.Identity.Name?.Substring(0, 1).ToUpper())</span>
-                                <span style="color:rgba(255,255,255,0.8);font-size:0.875rem;">@User.Identity.Name</span>
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                                <li>
-                                    <a class="dropdown-item" href="@Url.Action("Profile", "Account")">
-                                        <i class="bi bi-person me-2 text-primary"></i>My Profile
-                                    </a>
-                                </li>
-                                <li><hr class="dropdown-divider my-1" /></li>
-                                <li>
-                                    <form method="post" asp-controller="Account" asp-action="Logout">
-                                        <button type="submit" class="dropdown-item text-danger">
-                                            <i class="bi bi-box-arrow-right me-2"></i>Sign Out
-                                        </button>
-                                    </form>
-                                </li>
-                            </ul>
-                        </li>
-                    }
-                    else
-                    {
-                        <li class="nav-item">
-                            <a class="btn-nav" href="@Url.Action("Login", "Account")">Sign In</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="btn-nav-primary" href="@Url.Action("Register", "Account")">Get Started</a>
-                        </li>
-                    }
-                </ul>
-            </div>
-        </div>
-    </nav>
+   
 
-    <main class="flex-grow-1 py-4">
+    <main class="flex-grow-1">
         <div class="page-content">
             @RenderBody()
         </div>

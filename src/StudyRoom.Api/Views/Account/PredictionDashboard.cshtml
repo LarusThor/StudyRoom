@@ -1,4 +1,4 @@
-@model StudyRoom.Api.ViewModels.HomeViewModel
+@model StudyRoom.Api.ViewModels.PredictionDashboardModel
 
 @section Styles {
     <link rel="stylesheet" href="~/css/templatemo-chain-summit.css" />
@@ -13,12 +13,11 @@
 <!-- Hero -->
 <section id="home" class="hero">
     <div class="hero-content">
-        <h1>StudyRoom</h1>
-        <p>Your collaborative space for focused learning</p>
+        <h1>Predictions Dashboard</h1>
+        
 
         <div class="cta-buttons">
             <a href="@Url.Action("Register", "Account")" class="btn-primary">Get Started</a>
-            <a href="@Url.Action("Login", "Account")" class="btn btn-secondary">Sign In</a>
         </div>
     </div>
 </section>

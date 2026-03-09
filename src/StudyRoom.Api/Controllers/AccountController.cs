@@ -1,5 +1,6 @@
 using StudyRoom.Api.Services;
 using StudyRoom.Api.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
@@ -21,6 +22,44 @@ namespace StudyRoom.Api.Controllers
         public IActionResult HomePage()
         {
             return View();
+        }
+
+        [HttpGet]
+        [Authorize]
+        public async Task<IActionResult> Dashboard()
+        {
+            var email = User.FindFirstValue(ClaimTypes.Email);
+            if (string.IsNullOrEmpty(email))
+                return RedirectToAction("Login");
+
+            try
+            {
+                var profile = await _accountService.GetUserProfileByEmailAsync(email);
+                return View(new HomeViewModel { FirstName = profile.FirstName });
+            }
+            catch (ArgumentException)
+            {
+                return View("Error");
+            }
+        }
+
+        [HttpGet]
+        [Authorize]
+        public async Task<IActionResult> PredictionDashboard()
+        {
+            var email = User.FindFirstValue(ClaimTypes.Email);
+            if (string.IsNullOrEmpty(email))
+                return RedirectToAction("Login");
+
+            try
+            {
+                var profile = await _accountService.GetUserProfileByEmailAsync(email);
+                return View(new PredictionDashboardModel {});
+            }
+            catch (ArgumentException)
+            {
+                return View("Error");
+            }
         }
 
         [HttpGet]
@@ -108,7 +147,7 @@ namespace StudyRoom.Api.Controllers
                     if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
                         return Redirect(returnUrl);
                     
-                    return RedirectToAction("Profile", "Account");
+                    return RedirectToAction("Dashboard", "Account");
                 }
 
                 if(result.IsNotAllowed)

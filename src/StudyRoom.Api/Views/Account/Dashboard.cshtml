@@ -1,0 +1,28 @@
+@model StudyRoom.Api.ViewModels.HomeViewModel
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/templatemo-chain-summit.css" />
+}
+
+<!-- Background Animation -->
+<div class="bg-animation">
+    <div class="neural-network" id="neuralNetwork"></div>
+    <div class="particles" id="particles"></div>
+</div>
+
+<!-- Hero -->
+<section id="home" class="hero">
+    <div class="hero-content">
+        <h1>Welcome back, @Model.FirstName</h1>
+        <p>Ready to get some studying done?</p>
+
+        <div class="cta-buttons">
+            <a href="@Url.Action("Profile", "Account")" class="btn-primary">My Profile</a>
+            <a href="@Url.Action("PredictionDashboard", "Account")" class="btn btn-secondary">Premier League Prediction Model</a>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script src="~/js/templatemo-chain-scripts.js"></script>
+}
