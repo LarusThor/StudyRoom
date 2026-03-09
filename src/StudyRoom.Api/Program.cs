@@ -41,7 +41,7 @@ namespace ASPNETCoreIdentityDemo
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/Login/Account");
                 app.UseHsts();
                 app.UseHttpsRedirection();
             }
